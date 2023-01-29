@@ -8,6 +8,7 @@ import { PokemonCataloguePage } from './pages/pokemon-catalogue/pokemon-catalogu
 import { ProfilePage } from './pages/profile/profile.page';
 import { LoginPage } from './pages/login/login.page';
 import { LoginFormComponent } from './components/login-form/login-form.component';
+import { FormsModule } from '@angular/forms';
 
 // Decorators 
 @NgModule({
@@ -24,6 +25,7 @@ import { LoginFormComponent } from './components/login-form/login-form.component
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule, 
   ],
   providers: [],
   bootstrap: [AppComponent]
