@@ -7,21 +7,28 @@ import { ProfilePage } from "./pages/profile/profile.page";
 
 // Define routes for the application
 const routes: Routes = [
+        // This is used to reroute the user to the login page
+        // if an empty page was typed in the browser search
     {
-        path:"",
+        path: "",
+        pathMatch: "full",
+        redirectTo: "/login"
+    },
+    {
+        path: "login",
         component: LoginPage
     },
-     {
-        path:"pokemon",
+    {
+        path: "pokemon",
         component: PokemonCataloguePage
-     },
-     {
-        path:"profile",
+    },
+    {
+        path: "profile",
         component: ProfilePage
-     }
+    }
 ]
-@NgModule({ 
-    imports:[
+@NgModule({
+    imports: [
         RouterModule.forRoot(routes)
     ], // Always used to import module
     exports: [
