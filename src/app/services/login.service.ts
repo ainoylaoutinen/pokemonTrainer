@@ -1,24 +1,13 @@
-<<<<<<< HEAD
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable, of, switchMap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { User } from '../models/user.model';
 
-=======
-import { Injectable } from '@angular/core';
-import { map, Observable, of, switchMap, tap } from 'rxjs';
-import { User } from '../models/user.model';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
-import { StorageUtil } from '../utils/storage.util';
-import { StorageKeys } from '../enums/storage-keys.enum';
->>>>>>> 138e5b4a94313da0f17133dd97f1201871769772
 
 const { apiUsers, apiKey } = environment;
 
 @Injectable({
-<<<<<<< HEAD
   providedIn: 'root'
 })
 export class LoginService {
@@ -70,47 +59,4 @@ export class LoginService {
     })
   }
   // IF User || Created User exists - Store a user
-=======
-  providedIn: 'root',
-})
-export class LoginService {
-  constructor(private readonly http: HttpClient) {}
-
-  public login(username: string): Observable<User> {
-    return this.checkUsername(username).pipe(
-      switchMap((user: User | undefined) => {
-        if (user === undefined) {
-          return this.createUser(username);
-        }
-        return of(user);
-      }),
-      tap((user: User) => {
-        StorageUtil.storageSave<User>(StorageKeys.User, user);
-      })
-    );
-  }
-
-  //chevk if user exists
-  private checkUsername(username: string): Observable<User | undefined> {
-    return this.http
-      .get<User[]>(`${apiUsers}?username=${username}`)
-      .pipe(map((response: User[]) => response.pop()));
-  }
-
-  private createUser(username: string): Observable<User> {
-    const user = {
-      username,
-      pokemons: [],
-    };
-
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'x-api-key': apiKey,
-    });
-
-    return this.http.post<User>(apiUsers, user, {
-      headers,
-    });
-  }
->>>>>>> 138e5b4a94313da0f17133dd97f1201871769772
 }
