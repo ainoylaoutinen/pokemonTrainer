@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Pokemon } from 'src/app/models/pokemon.model';
+import { PokemonCatalogueService } from 'src/app/services/pokemon-catalogue.service';
 
 @Component({
   selector: 'app-pokemon-list',
@@ -8,12 +10,14 @@ import { Pokemon } from 'src/app/models/pokemon.model';
 })
 export class PokemonListComponent implements OnInit{
  
-  @Input() pokemons : Pokemon[] = [];
 
-  constructor() { }
+  constructor(private readonly pokemonCatalogueService : PokemonCatalogueService  ) { }
 
   ngOnInit() : void {
-
+    this.pokemonCatalogueService.findAllPokemon()
   }
 
+  public get pokemons() : Observable<Pokemon[]> {
+    return this.pokemonCatalogueService.pokemons
+  }
 }

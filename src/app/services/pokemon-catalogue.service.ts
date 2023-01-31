@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { finalize } from 'rxjs';
+import { finalize, BehaviorSubject, Observable, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Pokemon } from '../models/pokemon.model';
 
@@ -11,13 +11,13 @@ const { apiPokemon } = environment;
   providedIn: 'root'
 })
 export class PokemonCatalogueService {
-
-  private _pokemons : Pokemon[] = [];
+  
+  private _pokemons : BehaviorSubject<Pokemon[]> = new BehaviorSubject<Pokemon[]>([]);
   private _error : string = "";
   private _loading : boolean = false;
 
-  get pokemons() : Pokemon[] {
-    return this._pokemons;
+  public get pokemons() : Observable<Pokemon[]> {
+    return this._pokemons.asObservable();
   }
 
   get error(): string {
@@ -32,20 +32,31 @@ export class PokemonCatalogueService {
 
   public findAllPokemon(): void{
     this._loading = true; 
-    this.http.get<Pokemon[]>(apiPokemon)
+    this.http.get<PokemonResponse>(apiPokemon)
     .pipe(
       finalize(() => {
         this._loading = false;
+      }),
+      map((pokemonResponse : PokemonResponse) => {
+        console.log("map response", pokemonResponse)
+        return pokemonResponse.results
+      
+      
       })
+    
     )
-    .subscribe( {
-      next: (pokemons : Pokemon[]) =>{
-        this._pokemons = pokemons;
+    .subscribe({
+      next: (pokemons: Pokemon[]) => {
+        console.log("pokemons response", pokemons)
+        this._pokemons.next(pokemons)
       },
-      error: (error : HttpErrorResponse) => {
-        this._error = error.message;
+      error : (error : HttpErrorResponse) => {
+        console.log(error.message)
       }
-
     })
-  }
+  }}
+   
+
+interface PokemonResponse {
+  results : Pokemon[]
 }

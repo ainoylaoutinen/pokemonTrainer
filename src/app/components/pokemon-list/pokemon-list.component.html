@@ -1,7 +1,8 @@
     <ul>
-        <li *ngFor="let pokemon of pokemons"> 
+        <li *ngFor="let pokemon of pokemons | async"> 
             
-            <span>{{pokemon.name}} by {{pokemon.id}} </span>
+            <span >{{pokemon.name}} by {{pokemon.url}} </span>
+            
         </li>
         
 
