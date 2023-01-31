@@ -4,7 +4,6 @@ import { map, Observable, of, switchMap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { User } from '../models/user.model';
 
-
 const { apiUsers, apiKey } = environment;
 
 @Injectable({
