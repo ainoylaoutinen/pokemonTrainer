@@ -15,6 +15,7 @@ import { LoginFormComponent } from './components/login-form/login-form.component
 import { FormsModule } from '@angular/forms';
 import { PokemonListComponent } from './components/pokemon-list/pokemon-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PokemonListItemComponent } from './components/pokemon-list-item/pokemon-list-item.component';
 
 // Decorators 
 @NgModule({
@@ -25,7 +26,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ProfilePage,
     LoginPage,
     LoginFormComponent,
-    PokemonListComponent
+    PokemonListComponent,
+    PokemonListItemComponent
   ],
   // Modules go in imports 
   imports: [

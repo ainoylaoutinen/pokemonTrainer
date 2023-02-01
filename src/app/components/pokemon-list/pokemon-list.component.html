@@ -1,11 +1,6 @@
-<mat-card *ngFor="let pokemon of pokemons$ | async" class="example-card">
-    <mat-card-header>
-      <mat-card-title-group>
-        <mat-card-title>A pokemon</mat-card-title>
-      </mat-card-title-group>
-    </mat-card-header>
-    <mat-card-content>
-      {{pokemon.name}}
-    </mat-card-content>
-  </mat-card>
-
+<ul>  
+    <app-pokemon-list-item
+    *ngFor="let pokemon of pokemons$ | async" 
+    [pokemon] = "pokemon"
+    ></app-pokemon-list-item>
+</ul>  

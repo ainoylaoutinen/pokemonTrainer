@@ -35,16 +35,20 @@ export class PokemonCatalogueService {
 
     public findAllPokemons(): void {
       this._loading = true;
-      this.http.get<PokemonResponse>("https://pokeapi.co/api/v2/pokemon/")
+      this.http.get<Results>("https://pokeapi.co/api/v2/pokemon?limit=100&offset=1")
       .pipe(
-        map((pokemonResponse: PokemonResponse)=> {
-          return pokemonResponse.pokemons
+        map((pokemonResponse: Results)=> {
+          return pokemonResponse.results
         })
       )
       .subscribe({
-        next: (pokemons: Pokemon[]) => {
-          console.log(pokemons)
-          this._pokemons$.next(pokemons)
+        next: (results: Pokemon[]) => {
+          for (let i=0; i<results.length; i++) {
+            let sprite = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${i+1}.png`
+            results[i].sprite = sprite;
+          }
+          this._pokemons$.next(results)
+          console.log(results)
         },
         error: (error: HttpErrorResponse) => {
           this._error = error.message;
@@ -66,7 +70,10 @@ export class PokemonCatalogueService {
 }
 
 
-  interface PokemonResponse {
-    pokemons: Pokemon[]
-  }
+  interface Results {
+    //next: String
+    //previous: String
+    //count: Number
+    results: Pokemon[]
+}
 
