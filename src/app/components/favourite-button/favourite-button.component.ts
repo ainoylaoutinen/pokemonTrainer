@@ -1,4 +1,6 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
+import { FavouriteService } from 'src/app/services/favourite.service';
 
 @Component({
   selector: 'app-favourite-button',
@@ -9,13 +11,27 @@ export class FavouriteButtonComponent implements OnInit{
 
   @Input() pokemonName: string = "";
 
-  constructor() { }
+  get loading() : boolean{
+    return this.favouriteService.loading
+  }
+
+  constructor(
+    private readonly favouriteService : FavouriteService
+  ) { }
 
   ngOnInit(): void {
     
   }
   onFavouriteClick() : void{
     // Add pokemon to favourites
-    alert("Pokemon clicked " + this.pokemonName )
+    this.favouriteService.addToFavourites(this.pokemonName)
+    .subscribe({
+      next: (response : any) => {
+        console.log("Next ", response)
+      },
+      error: (error : HttpErrorResponse) => {
+        console.log("Error", error.message)
+      }
+    })
   }
 }
