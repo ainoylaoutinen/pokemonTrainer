@@ -51,8 +51,8 @@ export class PokemonCatalogueService {
         console.log("pokemons response", pokemons)
         this._pokemons.next(pokemons) 
         for(let i = 0; i < pokemons.length; i++) {
-          let sprites = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${i+1}.png`
-          console.log(sprites)
+          let sprite = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${i+1}.png`
+          pokemons[i].sprites = sprite;
         }
         
       },
