@@ -9,6 +9,10 @@ import { ProfilePage } from './pages/profile/profile.page';
 import { LoginPage } from './pages/login/login.page';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { FormsModule } from '@angular/forms';
+import { PokemonListComponent } from './components/pokemon-list/pokemon-list.component';
+import { PokemonListItemComponent } from './components/pokemon-list-item/pokemon-list-item.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { FavouriteButtonComponent } from './components/favourite-button/favourite-button.component';
 
 // Decorators 
 @NgModule({
@@ -18,7 +22,11 @@ import { FormsModule } from '@angular/forms';
     PokemonCataloguePage,
     ProfilePage,
     LoginPage,
-    LoginFormComponent
+    LoginFormComponent,
+    PokemonListComponent,
+    PokemonListItemComponent,
+    NavbarComponent,
+    FavouriteButtonComponent
   ],
   // Modules go in imports 
   imports: [

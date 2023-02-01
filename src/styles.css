@@ -2,3 +2,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.bg-dark-green {
+    background-color: #29502294;
+}
