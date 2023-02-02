@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { finalize, Observable } from 'rxjs';
+import { finalize, Observable , tap} from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Pokemon } from '../models/pokemon.model';
 import { User } from '../models/user.model';
@@ -29,7 +29,7 @@ export class FavouriteService {
   
 
   // Patch request with the userId and the pokemon
-  public addToFavourites(pokemonName: string): Observable<any> {
+  public addToFavourites(pokemonName: string): Observable<User> {
     if(!this.userService.user) {
       throw new Error("addToFavourites: There is no user ");
     } 
@@ -43,22 +43,27 @@ export class FavouriteService {
     }
 
     if(this.userService.inFavourites(pokemonName)) {
-      throw new Error ("addToFavourites Pokemon already in favourites: " + pokemonName)
+      this.userService.removeFromFavourites(pokemonName)
+    } else {
+      this.userService.addToFavourites(pokemon)
     }
 
     const headers = new HttpHeaders({
       'Content-Type' : 'Application/json',
-      'x-apikey' : apiKey
+      'x-api-key' :  apiKey 
     })
 
     this._loading = true;
 
-    return this.http.patch(`${apiUsers}/${user.id}`, {
-      pokemon: [...user.pokemon, pokemon]
+    return this.http.patch<User>(`${apiUsers}/${user.id}`, {
+      pokemon: [...user.pokemon]
     }, {
       headers
     })
     .pipe(
+      tap((updatedUser: User) => {
+        this.userService.user = updatedUser;
+      }),
       finalize(() => {
         this._loading = false;
       })

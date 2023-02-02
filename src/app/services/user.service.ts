@@ -25,12 +25,24 @@ export class UserService {
     
    }
 
-   public inFavourites(pokemonName : string): boolean {
+   public inFavourites(pokemonName: string): boolean {
     if(this.user) {
       
       return Boolean(this.user?.pokemon.find((pokemon : Pokemon) => pokemon.name === pokemonName))
     }
 
     return false;
+   }
+
+   public addToFavourites(pokemon : Pokemon) : void {
+    if(this._user) {
+      this._user.pokemon.push(pokemon);
+    }
+   }
+
+   public removeFromFavourites(pokemonName: string): void {
+      if(this._user) {
+        this._user.pokemon = this._user.pokemon.filter((pokemon : Pokemon) => pokemon.name !== pokemonName)
+      }
    }
 }
