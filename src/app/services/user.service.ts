@@ -36,7 +36,7 @@ export class UserService {
 
    public addToFavourites(pokemon : Pokemon) : void {
     if(this._user) {
-      console.log("Add to favourites" , pokemon )
+      console.log("Add to favourites", pokemon )
       this._user.pokemon.push(pokemon);
     }
    }

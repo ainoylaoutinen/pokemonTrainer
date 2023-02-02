@@ -15,9 +15,10 @@ export class ProfilePage implements OnInit {
   }
 
   get favourites(): Pokemon[] {
-     
     if(this.userService.user) {
+      console.log("Favourites", this.favourites)
       return this.userService.user.pokemon;
+      
     }
     return [];
   }
