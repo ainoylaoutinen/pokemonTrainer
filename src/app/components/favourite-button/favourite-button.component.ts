@@ -28,7 +28,7 @@ export class FavouriteButtonComponent implements OnInit{
     alert("Pokemon clicked " + this.pokemonName )
     this.favouriteService.addToFavourites(this.pokemonName)
     .subscribe({
-      next: (response: any) => {
+      next: (response: User) => {
         console.log("next", response)
       },
       error: (error: HttpErrorResponse) => {

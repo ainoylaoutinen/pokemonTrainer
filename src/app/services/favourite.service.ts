@@ -5,7 +5,7 @@ import { PokemonCatalogueService } from './pokemon-catalogue.service';
 import { UserService } from './user.service';
 import { Pokemon } from '../models/pokemon.model';
 import { User } from '../models/user.model';
-import { finalize, Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
 
 const { apiKey, apiUsers } = environment;
@@ -27,7 +27,7 @@ export class FavouriteService {
     private readonly userService: UserService,
   ) { }
 
-  public addToFavourites(pokemonName: string): Observable<any> {
+  public addToFavourites(pokemonName: string): Observable<User> {
     if (!this.userService.user) {
       throw new Error("addToFavorites: there is no user")
     }
@@ -48,13 +48,15 @@ export class FavouriteService {
       'x-apikey' : apiKey
     })
 
-    return this.http.patch(`${apiUsers}/${user.id}`, {
+    return this.http.patch<User>(`${apiUsers}/${user.id}`, {
       pokemon: [...user.pokemon, pokemon]
     }, {
       headers
     })
     .pipe(
-      finalize(() => this._loading=false)
+      tap((updatedUser: User) => {
+        this.userService.user = updatedUser;
+      })
     )
   }
 }
