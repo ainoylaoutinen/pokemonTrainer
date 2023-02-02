@@ -17,6 +17,7 @@ export class PokemonCatalogueService {
   private _loading : boolean = false;
   private _sprites : string = "";
 
+
   public get pokemons() : Observable<Pokemon[]> {
     return this._pokemons.asObservable();
   }
@@ -31,7 +32,13 @@ export class PokemonCatalogueService {
 
   constructor(private readonly http: HttpClient) { }
 
+
   public findAllPokemon(): void{
+
+    if(this._pokemons.value.length > 0 || this.loading) {
+      return;
+    }
+
     this._loading = true; 
     this.http.get<PokemonResponse>(apiPokemon)
     .pipe(
