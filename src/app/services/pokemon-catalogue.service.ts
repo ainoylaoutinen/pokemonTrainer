@@ -60,7 +60,13 @@ export class PokemonCatalogueService {
         console.log(error.message)
       }
     })
-  }}
+  }
+
+  public pokemonByName(name: string): Pokemon | undefined {
+    return this._pokemons.value.find((pokemon: Pokemon) => pokemon.name === name)
+   }
+
+}
    
 
 interface PokemonResponse {
