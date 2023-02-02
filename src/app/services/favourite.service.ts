@@ -14,18 +14,18 @@ const { apiKey, apiUsers } = environment;
   providedIn: 'root'
 })
 export class FavouriteService {
+  
+  constructor(
+    private http: HttpClient,
+    private readonly pokemonService: PokemonCatalogueService,
+    private readonly userService: UserService,
+  ) { }
 
   private _loading: boolean = false;
 
   get loading(): boolean {
     return this._loading;
   }
-
-  constructor(
-    private http: HttpClient,
-    private readonly pokemonService: PokemonCatalogueService,
-    private readonly userService: UserService,
-  ) { }
 
   public addToFavourites(pokemonName: string): Observable<User> {
     if (!this.userService.user) {
@@ -39,17 +39,18 @@ export class FavouriteService {
       throw new Error("no pokemon with id: " + pokemonName)
     }
 
-    if (this.userService.inFavorites(pokemonName)) {
-      throw new Error("pokemon already in favorotes");
+    if(this.userService.inFavourites(pokemonName)) {
+      this.userService.removeFromFavourites(pokemonName)
+    } else {
+      this.userService.addToFavourites(pokemon)
     }
-    
     const headers = new HttpHeaders({
       'Content-Type' : 'Application/json',
-      'x-apikey' : apiKey
+      'x-api-key' : apiKey
     })
 
     return this.http.patch<User>(`${apiUsers}/${user.id}`, {
-      pokemon: [...user.pokemon, pokemon]
+      pokemon: [...user.pokemon]
     }, {
       headers
     })
