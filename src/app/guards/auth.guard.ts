@@ -12,6 +12,8 @@ export class AuthGuard implements CanActivate {
     private readonly router: Router,
     private readonly userService: UserService
   ) { }
+
+  // Router guarding service that doesn't allow the user to view the 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {

@@ -1,6 +1,7 @@
+    <!-- Forloop to go through each pokemon item that is passed through the pokemon list item component-->
     <ul>
         <app-pokemon-list-item 
-        *ngFor="let pokemon of pokemons | async"
+        *ngFor="let pokemon of pokemons"
         [pokemon]="pokemon"
         > 
             
