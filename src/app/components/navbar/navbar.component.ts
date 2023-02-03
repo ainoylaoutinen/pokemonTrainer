@@ -9,7 +9,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class NavbarComponent implements OnInit {
 
-
+  // Gets the user from the User model for the navbar
   get user() : User | undefined {
     return this.userService.user;
   }
