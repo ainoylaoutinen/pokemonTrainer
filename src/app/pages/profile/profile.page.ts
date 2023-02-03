@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Pokemon } from 'src/app/models/pokemon.model';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
@@ -10,8 +10,19 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ProfilePage implements OnInit {
 
+
+  @Output() logout : EventEmitter<void> = new EventEmitter();
+
   get user() : User | undefined {
     return this.userService.user;
+  }
+
+
+   handleLogout() : User | any {
+    console.log("Logout clicked");
+   //return sessionStorage.removeItem(this.user);
+   
+    
   }
 
   get favourites(): Pokemon[] {

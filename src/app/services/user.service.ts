@@ -20,6 +20,11 @@ export class UserService {
     this._user = user;
   } 
 
+  public handleLogout(user : User)  {
+    console.log("Logout clicked")
+    StorageUtil.storageDelte<User>(StorageKeys.User, user)
+     }
+     
   constructor() {
     this._user = StorageUtil.storageRead<User>(StorageKeys.User);
     
