@@ -10,8 +10,6 @@ export class PokemonListItemComponent implements OnInit{
 
   @Input() pokemon?: Pokemon
 
-
-  
   constructor() { }
   ngOnInit(): void {
     
