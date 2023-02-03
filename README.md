@@ -1,26 +1,33 @@
 # Pokemontrainerapp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.3.
+This project was created by Aino Ylä-Outinen and Max Bowen for the Noroff Front End course.
 
-## Development server
+The project was conducted as pair work and took roughly 40 hours to create
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Functionality
 
-## Code scaffolding
+The task was to build a pokemon trainer application that uses PokeAPI data to display pokemon and allow the user to catch pokemon and view them in their trainer page 
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+The application uses guard services to protect the endpoints and redirects the user back to the login page if they try to access other components of the application before logging in.
 
-## Build
+The application uses the Noroff API to handle user details.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+The application was built using the Angular framework, Javascript, TypeScript, html, css, Railway.
 
-## Running unit tests
+## Running the application
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+To run the application you must first 
 
-## Running end-to-end tests
+`npm install` the project
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+`ng serve` to launch the project 
+
+
+## Figma component tree
+
+
+![image](https://user-images.githubusercontent.com/89595592/216623513-31a2140e-625b-43fa-ac40-87612c3aec55.png)
+
 
 ## Further help
 
