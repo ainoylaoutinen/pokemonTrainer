@@ -15,7 +15,7 @@ export class ProfilePage implements OnInit {
     return this.userService.user;
   }
 
-  get pokemons(): Pokemon[]{
+  get pokemon(): Pokemon[]{
     if(this.userService.user) {
       return this.userService.user.pokemon
     }

@@ -9,7 +9,6 @@ import { PokemonCatalogueService } from 'src/app/services/pokemon-catalogue.serv
   styleUrls: ['./pokemon-list.component.css']
 })
 export class PokemonListComponent implements OnInit{
- 
 
   constructor(private readonly pokemonCatalogueService : PokemonCatalogueService  ) { }
 
