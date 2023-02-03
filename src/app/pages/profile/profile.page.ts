@@ -18,13 +18,6 @@ export class ProfilePage implements OnInit {
   }
 
 
-   handleLogout() : User | any {
-    console.log("Logout clicked");
-   //return sessionStorage.removeItem(this.user);
-   
-    
-  }
-
   get favourites(): Pokemon[] {
     if(this.userService.user) {
       console.log("Favourites", this.favourites)

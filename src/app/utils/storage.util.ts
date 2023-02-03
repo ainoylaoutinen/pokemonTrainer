@@ -4,10 +4,7 @@ export class StorageUtil{
         sessionStorage.setItem(key, JSON.stringify(value));
     }
 
-    public static storageDelte<T>(key: string, value: T): void{
-        sessionStorage.removeItem(key);
-    }
-    
+ 
     public static storageRead<T>(key: string): T | undefined {
         const storedValue = sessionStorage.getItem(key);
         try {
