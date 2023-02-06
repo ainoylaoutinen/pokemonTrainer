@@ -4,6 +4,8 @@ This project was created by Aino Ylä-Outinen and Max Bowen for the Noroff Front
 
 The project was conducted as pair work and took roughly 40 hours to create
 
+https://pokemon-trainer-blue.vercel.app/login
+
 ## Functionality
 
 The task was to build a pokemon trainer application that uses PokeAPI data to display pokemon and allow the user to catch pokemon and view them in their trainer page 
